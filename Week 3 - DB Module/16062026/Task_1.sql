@@ -1,5 +1,4 @@
 create database college_db;
-create database departments;
 
 create table departments(
 department_id SERIAL PRIMARY KEY,

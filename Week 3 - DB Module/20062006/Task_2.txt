@@ -1,0 +1,30 @@
+// To find records which have rating '5'
+db.feedback.find({ rating: 5 })
+
+// Find feedback for the course code CS101 and tags containing Challenging
+db.feedback.find({ course_code: "CS101", tags: "challenging" })
+
+
+// Using $elemMatch to find the specific feedback
+db.feedback.find({ course_code: "CS101", tags: { $elemMatch: { $eq: "challenging" } } })
+
+// Get the specified cols alone
+db.feedback.find({}, { student_id: 1, course_code: 1, rating: 1, _id: 0 })
+
+
+// Update with new col: needs_review for feedback with rating less than 3
+db.feedback.updateMany(
+  { rating: { $lt: 3 } },
+  { $set: { needs_review: true } }
+)
+
+// Update feedback with new tag "reviewed" where needs_review are true 
+db.feedback.updateMany(
+  { needs_review: true },
+  { $push: { tags: "reviewed" } }
+)
+
+// Delete feedback where the semester is 2021-EVEN
+db.feedback.deleteMany({ semester: "2021-EVEN" })
+
+

@@ -1,0 +1,50 @@
+// Pipeline to filter the course from 2022-ODD & group by course_code & sort by avg_rating
+db.feedback.aggregate([
+  { $match: { semester: "2022-ODD" } },
+  { 
+    $group: { 
+      _id: "$course_code", 
+      avg_rating: { $avg: "$rating" }, 
+      total_feedback: { $count: {} } 
+    } 
+  },
+  { $sort: { avg_rating: -1 } }
+])
+
+// Further formats the output and rounding the value
+db.feedback.aggregate([
+  { $match: { semester: "2022-ODD" } },
+  { 
+    $group: { 
+      _id: "$course_code", 
+      avg_rating: { $avg: "$rating" }, 
+      total_feedback: { $count: {} } 
+    } 
+  },
+  { 
+    $project: {
+      _id: 1,
+      total_feedback: 1,
+      average_rating: { $round: ["$avg_rating", 1] }
+    }
+  },
+  { $sort: { average_rating: -1 } }
+])
+
+//Group the feedback by tags and count the repitions
+db.feedback.aggregate([
+  { $unwind: "$tags" },
+  { 
+    $group: { 
+      _id: "$tags", 
+      count: { $sum: 1 } 
+    } 
+  },
+  { $sort: { count: -1 } }
+])
+
+//It creates an index on the course_code
+db.feedback.createIndex({ course_code: 1 })
+
+//It shows the statistics of the execution of the below query
+db.feedback.find({ course_code: 'CS101' }).explain('executionStats')

@@ -1,0 +1,120 @@
+use college_nosql;
+
+db.createCollection("feedback");
+
+db.feedback.insertMany([
+  {
+    student_id: 1,
+    course_code: "CS101",
+    semester: "2022-ODD",
+    rating: 5,
+    comments: "Excellent teaching style. The assignments were highly practical.",
+    tags: ["challenging", "well-structured", "good-examples"],
+    submitted_at: ISODate("2022-11-30T10:15:00Z"),
+    attachments: [{ filename: "notes.pdf", size_kb: 240 }]
+  },
+  {
+    student_id: 2,
+    course_code: "CS101",
+    semester: "2022-ODD",
+    rating: 4,
+    comments: "Good class, but the exam pacing was a bit too fast.",
+    tags: ["fast-paced", "good-examples"],
+    submitted_at: ISODate("2022-12-01T09:00:00Z"),
+    attachments: [{ filename: "syllabus.pdf", size_kb: 120 }]
+  },
+  {
+    student_id: 3,
+    course_code: "CS101",
+    semester: "2023-EVEN",
+    rating: 3,
+    comments: "Interesting concepts, but grading criteria felt vague.",
+    tags: ["challenging", "harsh-grading"],
+    submitted_at: ISODate("2023-05-15T14:20:00Z"),
+    attachments: [{ filename: "project_rubric.pdf", size_kb: 450 }]
+  },
+  {
+    student_id: 4,
+    course_code: "CS102",
+    semester: "2023-EVEN",
+    rating: 5,
+    comments: "Absolutely loved this course! Professor was incredibly engaging.",
+    tags: ["highly-recommended", "engaging", "interactive"],
+    submitted_at: ISODate("2023-05-18T11:10:00Z"),
+    attachments: [{ filename: "lecture1_slides.pdf", size_kb: 1024 }]
+  },
+  {
+    student_id: 5,
+    course_code: "CS102",
+    semester: "2022-ODD",
+    rating: 2,
+    comments: "The lecture material did not align well with the lab assignments.",
+    tags: ["disorganized", "hard-labs"],
+    submitted_at: ISODate("2022-11-28T16:45:00Z"),
+    attachments: [{ filename: "lab1_error.png", size_kb: 85 }]
+  },
+  {
+    student_id: 6,
+    course_code: "MATH201",
+    semester: "2022-ODD",
+    rating: 4,
+    comments: "Heavy math workload but the professor provided great extra credit options.",
+    tags: ["heavy-workload", "fair-grading"],
+    submitted_at: ISODate("2022-12-05T08:30:00Z"),
+    attachments: [{ filename: "formula_sheet.pdf", size_kb: 310 }]
+  },
+  {
+    student_id: 7,
+    course_code: "PHY101",
+    semester: "2023-EVEN",
+    rating: 1,
+    comments: "Avoid if possible. Lectures were just reading directly off basic text slides.",
+    tags: ["boring", "avoid"],
+    submitted_at: ISODate("2023-06-01T13:00:00Z"),
+    attachments: [{ filename: "complaint.docx", size_kb: 45 }]
+  },
+  {
+    student_id: 8,
+    course_code: "ENG104",
+    semester: "2023-EVEN",
+    rating: 5,
+    comments: "Great essays and discussions. Highly improved my writing style.",
+    tags: ["discussion-heavy", "creative"],
+    submitted_at: ISODate("2023-05-20T10:00:00Z"),
+    attachments: [{ filename: "essay_guide.pdf", size_kb: 150 }]
+  },
+  {
+    student_id: 9,
+    course_code: "BIO302",
+    semester: "2022-ODD",
+    rating: 3,
+    comments: "Standard biology class. Lots of memorization required.",
+    tags: ["memorization", "heavy-workload"],
+    submitted_at: ISODate("2022-12-10T12:15:00Z"),
+    attachments: [{ filename: "lab_specimen_list.pdf", size_kb: 2100 }]
+  },
+  {
+    student_id: 10,
+    course_code: "CHEM101",
+    semester: "2023-EVEN",
+    rating: 4,
+    comments: "Fun experiments in the lab portion. Theory exams were tough though.",
+    tags: ["fun-labs", "challenging"],
+    submitted_at: ISODate("2023-05-25T15:40:00Z"),
+    attachments: [{ filename: "periodic_table.pdf", size_kb: 500 }]
+  }
+]);
+
+
+db.feedback.insertOne({
+  student_id: 11,
+  course_code: "CS103",
+  semester: "2023-EVEN",
+  rating: 4,
+  comments: "No attachments needed for this review. Great introductory class.",
+  tags: ["beginner-friendly"],
+  submitted_at: ISODate("2023-05-26T09:30:00Z")
+});
+
+
+db.feedback.countDocuments();

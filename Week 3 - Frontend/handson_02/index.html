@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Dashboard</title>
+    <!-- Link to styles.css -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section: Brand Logo & Main Navigation -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon">🎓</span>
+            <span class="logo-text">EduPortal</span>
+        </div>
+        <!-- Hamburger menu placeholder for mobile -->
+        <div class="hamburger">☰</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Grades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Hero Banner Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Welcome to the Student Portal</h1>
+                <p>Empowering students with seamless access to academic resources, course listings, schedule management, and grading progress. Dive in and explore your academic journey.</p>
+                <button type="button" class="btn-primary" onclick="document.getElementById('courses').scrollIntoView({ behavior: 'smooth' })">
+                    Explore Courses
+                </button>
+            </div>
+            <!-- Decorative glow element -->
+            <div class="hero-glow"></div>
+        </section>
+
+        <!-- Student Stats Bar Section -->
+        <section id="stats">
+            <div class="stat-card">
+                <span class="stat-label">Courses Enrolled</span>
+                <span class="stat-value">3</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">GPA</span>
+                <span class="stat-value">3.8</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Semester</span>
+                <span class="stat-value">6</span>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <div class="section-header">
+                <h2>Featured Courses</h2>
+                <div class="section-underline"></div>
+            </div>
+            
+            <div class="course-grid">
+                <!-- Course Card 1 -->
+                <article class="course-card">
+                    <div class="course-header">
+                        <h3>Introduction to Computer Science</h3>
+                        <span class="course-tag">CS101</span>
+                    </div>
+                    <p>Learn the foundational concepts of programming, algorithms, data structures, and computational thinking. Perfect for aspiring software developers.</p>
+                    <div class="course-footer">
+                        <span class="credits">4 Credits</span>
+                    </div>
+                </article>
+
+                <!-- Course Card 2 -->
+                <article class="course-card">
+                    <div class="course-header">
+                        <h3>Web Design &amp; Development</h3>
+                        <span class="course-tag">WEB102</span>
+                    </div>
+                    <p>Master semantic HTML5, modern CSS layouts (Flexbox/Grid), responsive design, and dynamic Javascript interfaces to build interactive web apps.</p>
+                    <div class="course-footer">
+                        <span class="credits">3 Credits</span>
+                    </div>
+                </article>
+
+                <!-- Course Card 3 -->
+                <article class="course-card">
+                    <div class="course-header">
+                        <h3>Database Management Systems</h3>
+                        <span class="course-tag">DB103</span>
+                    </div>
+                    <p>Dive deep into relational database design, schema normalization, structured query language (SQL), transaction control, and performance indexing.</p>
+                    <div class="course-footer">
+                        <span class="credits">3 Credits</span>
+                    </div>
+                </article>
+
+                <!-- Course Card 4 -->
+                <article class="course-card">
+                    <div class="course-header">
+                        <h3>Software Engineering</h3>
+                        <span class="course-tag">SE201</span>
+                    </div>
+                    <p>Study the software lifecycle, requirements gathering, design patterns, testing methodologies, and agile project management practices.</p>
+                    <div class="course-footer">
+                        <span class="credits">3 Credits</span>
+                    </div>
+                </article>
+
+                <!-- Course Card 5 -->
+                <article class="course-card">
+                    <div class="course-header">
+                        <h3>Mobile App Development</h3>
+                        <span class="course-tag">MOB202</span>
+                    </div>
+                    <p>Create cross-platform mobile experiences. Learn state management, native APIs, local storage, deployment pipelines, and mobile UX design.</p>
+                    <div class="course-footer">
+                        <span class="credits">4 Credits</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 EduPortal. Built with modern HTML5 &amp; CSS3. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

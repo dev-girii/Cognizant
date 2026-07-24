@@ -1,0 +1,146 @@
+<!--
+=== BASELINE ACCESSIBILITY AUDIT REPORT ===
+Initial Estimated Accessibility Score: ~65
+Identified Violations (WCAG 2.1):
+1. Missing Form Labels (WCAG 1.3.1 / 4.1.2) - Search input lacks an associated label.
+2. Keyboard Navigation & Interactive Roles (WCAG 2.1.1 / 4.1.2) - Course cards not focusable or navigable. The mobile hamburger menu toggle is a non-semantic div with no focus or label.
+3. Landmark Labels (WCAG 1.3.1) - Nav container lacks descriptive label.
+4. Active Route State (WCAG 2.4.4) - The active anchor lacks aria-current="page".
+5. Live Announcement Regions (WCAG 4.1.3) - No dynamic aria-live/role="status" exists to report results count update when typing in search filter.
+6. Color Contrast Failures (WCAG 1.4.3 - AA) - Fails 4.5:1 minimum ratio on muted text (#64748b) and blue highlights.
+7. Non-Text Content (WCAG 1.1.1) - Decorative icons (graduation cap, hamburger menu indicator) lack accessibility markers.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Accessible Dashboard</title>
+    <!-- Link to styles.css -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to app.js ES Module -->
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+
+    <!-- Header Section: Brand Logo & Main Navigation -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon" aria-hidden="true">🎓</span>
+            <span class="logo-text">EduPortal</span>
+        </div>
+        <!-- Semantic button for hamburger menu toggle -->
+        <button class="hamburger" aria-label="Toggle main navigation menu" aria-expanded="false">☰</button>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#" class="active" aria-current="page">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#">Grades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Hero Banner Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Welcome to the Student Portal</h1>
+                <p>Empowering students with seamless access to academic resources, course listings, schedule management, and grading progress. Dive in and explore your academic journey.</p>
+                <button type="button" class="btn-primary" onclick="document.getElementById('courses').scrollIntoView({ behavior: 'smooth' })">
+                    Explore Courses
+                </button>
+            </div>
+            <!-- Decorative glow element -->
+            <div class="hero-glow" aria-hidden="true"></div>
+        </section>
+
+        <!-- Student Stats Bar Section -->
+        <section id="stats" aria-label="Academic statistics summary">
+            <div class="stat-card">
+                <span class="stat-label">Courses Enrolled</span>
+                <span class="stat-value">3</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">GPA</span>
+                <span class="stat-value">3.8</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Semester</span>
+                <span class="stat-value">6</span>
+            </div>
+        </section>
+
+        <!-- Student Profile Section -->
+        <section id="profile">
+            <div class="section-header">
+                <h2>Student Profile</h2>
+                <div class="section-underline"></div>
+            </div>
+            
+            <div class="profile-header-avatar" style="text-align: center; margin-bottom: 1.5rem;">
+                <img src="avatar.png" alt="Student profile avatar with graduation cap" style="width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--accent-color); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            </div>
+
+            <form id="profile-form" style="max-width: 500px; margin: 0 auto; background-color: var(--bg-white); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-subtle); box-shadow: 0 2px 4px rgba(0,0,0,0.02);" onsubmit="event.preventDefault(); console.log('Profile saved!');">
+                <div class="form-group" style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                    <label for="profile-name" style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Full Name</label>
+                    <input type="text" id="profile-name" value="Sanjay Gupta" required style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                    <label for="profile-email" style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Email Address</label>
+                    <input type="email" id="profile-email" value="sanjay.gupta@example.com" required style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                    <label for="profile-semester" style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Current Semester</label>
+                    <input type="number" id="profile-semester" value="6" min="1" max="8" required style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem;">Save Profile</button>
+            </form>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses">
+            <div class="section-header">
+                <h2>Featured Courses</h2>
+                <div class="section-underline"></div>
+            </div>
+            <!-- Controls: Search & Sort -->
+            <div class="controls-panel">
+                <label for="search-courses" class="sr-only">Search courses</label>
+                <input type="text" id="search-courses" placeholder="Search courses by name...">
+                <button type="button" id="sort-credits" class="btn-secondary">Sort by Credits ↓</button>
+            </div>
+            
+            <!-- Dynamic count region for Screen Readers -->
+            <div id="search-count" role="status" aria-live="polite" style="margin: 0.5rem 0 1.5rem; font-size: 0.9rem; color: var(--text-muted); font-weight: 500; text-align: center;"></div>
+            
+            <!-- Selected Course Details Display -->
+            <div id="selectedcourse" role="status" aria-live="polite" style="display: none;"></div>
+
+            <div class="course-grid">
+                <!-- Courses will be dynamically rendered here from app.js -->
+            </div>
+            
+            <!-- Dynamic stats for total credits -->
+            <p id="total-credits" style="font-weight: 600; color: var(--accent-color); margin-top: 1.5rem;"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 EduPortal. Built with modern HTML5 &amp; CSS3. All rights reserved.</p>
+            <nav class="footer-links" aria-label="Footer links navigation">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- Hero Section -->
+<section id="hero">
+  <div class="hero-content">
+    <h1>Welcome to the Student Portal</h1>
+    <p>Empowering students with seamless access to academic resources, course listings, schedule management, and grading progress. Dive in and explore your academic journey.</p>
+    <button type="button" class="btn-primary" onclick="document.getElementById('courses').scrollIntoView({ behavior: 'smooth' })">
+      Explore Courses
+    </button>
+  </div>
+  <div class="hero-glow"></div>
+</section>
+
+<!-- Stats Section -->
+<section id="stats">
+  <div class="stat-card">
+    <span class="stat-label">Courses Enrolled</span>
+    <span class="stat-value">3</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">GPA</span>
+    <span class="stat-value">3.8</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-label">Semester</span>
+    <span class="stat-value">6</span>
+  </div>
+</section>
+
+<section id="courses">
+  <div class="section-header">
+    <h2>Featured Courses</h2>
+    <div class="section-underline"></div>
+  </div>
+
+  <!-- Search Controls -->
+  <div class="controls-panel" *ngIf="!loading">
+    <input
+      type="text"
+      id="search-courses"
+      placeholder="Search courses by name or code..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <!-- Loading State Spinner -->
+  <div *ngIf="loading" class="loading-state" style="text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 1.1rem; font-weight: 500; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+    <div class="spinner" style="width: 40px; height: 40px; border: 4px solid rgba(29, 78, 216, 0.15); border-top-color: var(--accent-color); border-radius: 50%; animation: spin 1s infinite linear;"></div>
+    Loading courses from API...
+  </div>
+
+  <!-- Course Card Grid -->
+  <div class="course-grid" *ngIf="!loading && getFilteredCourses().length > 0">
+    <app-course-card
+      *ngFor="let course of getFilteredCourses()"
+      [name]="course.name"
+      [code]="course.code"
+      [credits]="course.credits"
+      [grade]="course.grade"
+      [description]="course.description"
+    ></app-course-card>
+  </div>
+
+  <!-- Fallback alert if filtered list is empty -->
+  <div *ngIf="!loading && getFilteredCourses().length === 0" style="text-align: center; color: #64748b; padding: 2rem 0; font-weight: 500;">
+    No courses found matching "{{ searchTerm }}"
+  </div>
+</section>

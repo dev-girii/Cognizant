@@ -1,0 +1,14 @@
+<header>
+  <div class="logo">
+    <span class="logo-icon">🎓</span>
+    <span class="logo-text">Student Portal</span>
+  </div>
+  <div class="hamburger">☰</div>
+  <nav>
+    <ul>
+      <li><a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      <li><a [routerLink]="['/']" fragment="courses">Courses</a></li>
+      <li><a [routerLink]="['/profile']" routerLinkActive="active">Profile</a></li>
+    </ul>
+  </nav>
+</header>

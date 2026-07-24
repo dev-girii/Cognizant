@@ -1,3 +1,8 @@
+-- Normalization is a way of organizing data in a database to reduce redundancy and improve data integrity
+-- 1NF - Each column must contain only one value and each row should be unique
+-- 2NF - Every Non-key column must depend on the entire primary key, not just part of it 
+-- 3NF - Non-key columns depend only on the primary key, not on other non-key columns
+
 -- This is a query used to verify the 1NF, 2NF and 3NF
 
 -- This query checks for the atomicity and Null values ensuring it is 1NF

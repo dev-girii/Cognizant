@@ -1,0 +1,68 @@
+<section id="profile" style="padding: 2.5rem 0;">
+  <div class="section-header">
+    <h2>Student Profile</h2>
+    <div class="section-underline"></div>
+  </div>
+  <form 
+    style="max-width: 500px; margin: 0 auto; background-color: var(--bg-white); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-subtle); box-shadow: 0 2px 4px rgba(0,0,0,0.02)"
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+      <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;"
+      />
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" style="color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 0.25rem;">
+        Name is required
+      </div>
+    </div>
+    
+    <div style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+      <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;"
+      />
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" style="color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 0.25rem;">
+        <span *ngIf="email?.errors?.['required']">Email is required</span>
+        <span *ngIf="email?.errors?.['email']">Enter a valid email</span>
+      </div>
+    </div>
+    
+    <div style="margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+      <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-dark);">Semester</label>
+      <input
+        type="number"
+        formControlName="semester"
+        style="padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.95rem; width: 100%; box-sizing: border-box;"
+      />
+      <div *ngIf="semester?.invalid && (semester?.dirty || semester?.touched)" style="color: #ef4444; font-size: 0.8rem; font-weight: 500; margin-top: 0.25rem;">
+        <span *ngIf="semester?.errors?.['required']">Semester is required</span>
+        <span *ngIf="semester?.errors?.['min'] || semester?.errors?.['max']">Semester must be between 1 and 8</span>
+      </div>
+    </div>
+    
+    <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; align-items: center;">
+      <button 
+        type="submit" 
+        class="btn-primary" 
+        [disabled]="profileForm.invalid" 
+        style="width: 100%; padding: 0.75rem;"
+        [style.opacity]="profileForm.invalid ? '0.5' : '1'"
+        [style.cursor]="profileForm.invalid ? 'not-allowed' : 'pointer'"
+      >
+        Submit
+      </button>
+
+      <div 
+        style="width: 100%; padding: 0.75rem; background-color: var(--accent-light); border: 1px dashed rgba(29, 78, 216, 0.3); border-radius: 6px; font-size: 0.9rem; color: var(--accent-color); font-weight: 500; text-align: center; box-sizing: border-box;"
+      >
+        State Live Preview: {{ profileForm.value.name }} ({{ profileForm.value.email }}) - Semester {{ profileForm.value.semester }}
+      </div>
+    </div>
+  </form>
+</section>

@@ -18,7 +18,7 @@ department_id INT,
 enrollment_year INT,
 CONSTRAINT fk_department FOREIGN KEY(department_id) REFERENCES departments(department_id)
 );
-
+-- Constraint keyword is used to add a meaningful name to the database and lets us to edit through this
 
 create table courses(
 course_id SERIAL PRIMARY KEY,

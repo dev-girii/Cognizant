@@ -1,7 +1,7 @@
 import sys
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Numeric, CheckConstraint, create_engine
-from sqlalchemy.orm import relationship, declarative_base, sessionmaker
-import sqlalchemy as sa
+from sqlalchemy import Column, Integer, String, ForeignKey, Date, Numeric, CheckConstraint, create_engine #type: ignore
+from sqlalchemy.orm import relationship, declarative_base, sessionmaker #type: ignore
+import sqlalchemy as sa #type: ignore
 DATABASE_URL = "postgresql://postgres:dharan06#@localhost:5432/college_db_orm"
 
 engine = create_engine(DATABASE_URL, echo=True)

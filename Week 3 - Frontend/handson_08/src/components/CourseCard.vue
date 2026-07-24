@@ -1,0 +1,41 @@
+<template>
+  <article class="course-card">
+    <div class="course-header">
+      <h3>{{ name }}</h3>
+      <span class="course-tag">{{ code }}</span>
+    </div>
+    <p>{{ description }}</p>
+    <div class="course-footer" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: auto; gap: 0.5rem;">
+      <span class="credits">Credits: {{ credits }}</span>
+      <span style="font-size: 0.75rem; font-weight: 500; background-color: #f1f5f9; color: #475569; padding: 0.25rem 0.5rem; border-radius: 4px; border: 1px solid var(--border-subtle);">Grade: {{ grade }}</span>
+    </div>
+  </article>
+</template>
+
+<script setup>
+defineProps({
+  name: {
+    type: String,
+    required: true
+  },
+  code: {
+    type: String,
+    required: true
+  },
+  credits: {
+    type: Number,
+    required: true
+  },
+  grade: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    default: ''
+  }
+})
+</script>
+
+<style scoped>
+</style>
